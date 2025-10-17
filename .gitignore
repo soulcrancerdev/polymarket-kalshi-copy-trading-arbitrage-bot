@@ -1,2 +1,9 @@
-.env
+/node-orchestrator/node_modules
+/node-orchestrator/dist
+/rust-executor/target
+**/*.env
+.env.local
+.DS_Store
+.idea
+.vscode
 target

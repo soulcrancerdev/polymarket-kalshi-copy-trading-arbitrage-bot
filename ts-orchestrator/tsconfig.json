@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    // Set the JavaScript target version to ES2020 for modern syntax support
+    "target": "ES2020",
+    // Use CommonJS module system, suitable for Node.js environments
+    "module": "commonjs",
+    // Enable all strict type-checking options
+    "strict": true,
+    // Allow default imports from modules with no default export
+    "esModuleInterop": true,
+    // Skip type checking of declaration files for faster builds
+    "skipLibCheck": true,
+    // Specify the output directory for compiled JavaScript files
+    "outDir": "dist"
+  },
+  // Include all TypeScript files in the src directory
+  "include": ["src/**/*"]
+}

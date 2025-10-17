@@ -1,115 +1,62 @@
-# Solana Ultra-Fast New Token Sniper on Raydium and Pump.fun in Rust 🚀
+# Fourmeme Sniper Bot in Rust & TypeScript 🚀
 
-## Overview
-
-Introducing the **Solana Ultra-Fast New Token Sniper** written in **Rust** 🦀, designed to detect newly launched tokens on both **Raydium** and **Pump.fun** and execute buys at lightning speed ⚡. With Rust's memory safety features and performance optimizations, built with Rust for superior performance and security. Tailored for both novice and experienced traders.
-
----
-
-## Key Features
-
-### 🚀 Speed and Efficiency
-- **Lightning-Quick Transactions**: Leveraging Rust's exceptional performance, our bot allows you to snipe new tokens almost instantly. Say goodbye to delays and seize opportunities as they arise!
-
-### 🔒 Safety First
-- **Robust Security**: Rust's safety guarantees minimize bugs and vulnerabilities, ensuring your trading activities are secure. Trade with confidence and peace of mind.
-
-### 📊 Multiple gRPC Connections
-- **Stay Updated**: Effortlessly connect to top Solana data providers like **Helius** and **Yellowstone** through multiple gRPC connections. Get real-time updates and make informed trading decisions.
-
-### 👩‍💻 User-Friendly Interface
-- **Intuitive Design**: Our sniper bot features a clean and accessible interface, making it easy for users of all experience levels to navigate. Start trading in no time!
-
-### 🛠️ Rich Utilities
-- **Advanced Features**:
-  - **jito-confirm**: Engage in low-latency transactions on platforms like Raydium and Pumpfun.
-  - **jito-bundle**: Bundle buy/sell actions with up to **20 wallets** in Raydium/Pumpfun, enhancing your trading strategy and flexibility.
+## ⚡ Overview
+A high-speed, hybrid sniping bot, bundler bot, volume bot for **BSC** meme tokens, optimized for **Fourmeme** launches. Built with **Rust** for ultra-fast, reliable transactions and **TypeScript** for flexible event monitoring, heuristics, and trading logic.
 
 ---
 
-## Directory Structure
+## 🚀 Key Features
 
+- **Speed & Reliability**: Rust hot-path minimizes delay, ensuring quick snipes.
+- **Event Monitoring**: TypeScript listens to BSC mempool & liquidity events.
+- **Heuristics & Safety**: Custom rules, token validation, and filters before trading.
+- **Modular Design**: Clear separation — fast transaction core + flexible orchestration.
+
+---
+
+## 🏗️ Architecture
+
+```plaintext
++------------------------+        +---------------------------+
+| TypeScript Orchestrator| ---->  | Rust Executor (API)       |
+| - Event detection      |        | - Sign & send txs         |
+| - Heuristics           |        | - Deterministic logic     |
++------------------------+        +---------------------------+
 ```
-src/
-├── core/
-│   ├── token.rs        # Token definitions and handling
-│   └── tx.rs        # Transaction handling
-| 
-├── engine/
-│   ├── swap.rs        # Token swap(buy/sell) functionalities in various Dexs
-│   └── monitor        # New token monitoring(and parse tx) in Dexs using geyser rpc, and normal rpc
-│       └── helius.rs        # Helius gRpc for tx listen and parse.
-│       └── yellowstone.rs        # Yellowstone gRpc for tx listen and parse.
-|
-├── dex/
-│   ├── pump_fun.rs        # Pump.fun
-│   ├── raydium.rs        # Raydium
-│   ├── meteora.rs        # Meteora
-│   └── orca.rs        # Orca
-│
-├── services/
-│   ├── jito.rs        # Jito service provides ultra-fast transaction confirmation
-│   ├── nozomi.rs        # Jito service provides ultra-fast transaction confirmation
-│   ├── zeroslot.rs        # Jito service provides ultra-fast transaction confirmation
-│   └── nextblock.rs        # NextBlock service provides the ultra-fast transaction confirmation in unique way
-|
-├── common/
-│   ├── logger.rs        # Logs to be clean and convenient to monitor.
-│   └── utils.rs        # Utility functions used across the project
-│
-├── lib.rs
-└── main.rs
-```
+
+Orchestrator detects opportunities, calls executor API to execute snipes.
+
 ---
 ## Trial Versions
 
-### **Solana PumpRay Sniper (Trial)**  
-> 🗂️ [solana-pumpray-sniper(trial).zip](https://github.com/user-attachments/files/19416260/solana-pumpray-sniper.trial.zip)
+### **fourmeme-sniper-bot (Trial)**  
+> coming soon..
 
 **Strategy Details:**
-- **Entry Trigger:** Monitor user purchases of the new tokens on Dex; execute a buy order upon detection.
+- **Entry Trigger:** Monitor user-purchases and liquidity-add of the new tokens on Dex; execute a buy order upon detection.
 - **Exit Trigger:** Monitor user sales of tokens by checking tp/sl; execute a sell order upon detection.
 - **Time Limitation:** If a position remains open for more than 60 seconds, initiate an automatic sell.  
 *(Note: The tp/sl, as well as the 60-second time limit, are adjustable parameters via environment settings.)*
 ---
+### Test Result: 
 
-### How To Run
-1. Environment Variables Settings
-```plaintext
-PRIVATE_KEY= # your wallet priv_key
-RPC_API_KEY= #your helius rpc api-key (Please use premium version that has Geyser Enhanced Websocket)
-SLIPPAGE=10
-JITO_BLOCK_ENGINE_URL=https://ny.mainnet.block-engine.jito.wtf
-JITO_TIP_VALUE=0.00927
-TIME_EXCEED=60 # seconds; time limit for volume non-increasing
-TOKEN_AMOUNT=0.0000001 # token amount to purchase
-TP=3 #3 times
-SL=0.5 #50 percentage
-```
-2. Add the wallet address you want to block on a new line and save the file.
-```
-0x1234567890abcdef1234567890abcdef12345678
-0xabcdef1234567890abcdef1234567890abcdef12
-```
-3. Run `solana-pumpray-sniper.exe`.
 
-![image](https://github.com/user-attachments/assets/dffc8e4b-cd00-4921-8488-e25230f4a31a)
+https://github.com/user-attachments/assets/cf2ce89b-77f7-408a-b1a2-f9696c506c43
+
+
+<img width="941" height="936" alt="image (1)" src="https://github.com/user-attachments/assets/06a97e31-94d3-4367-b3b0-9b943a12b226" />
+
+- Detect: https://bscscan.com/tx/0x090749283c6411903cecb784272d5e016dba9a685b2b5217867d0646149ab981
+- Buy: https://bscscan.com/tx/0xdbfb3e400a00c2f3c985835fdcd8c32baf10aa7adc014b76ee9e0a4904a657cf
+- Sell: https://bscscan.com/tx/0xbb4557c1d803ebc2b667964dc5e3eace37230f64a93e235f273e68638e40102d
+---
+## 🔥 Tips & Best Practices
+- Keep hot-path logic minimal; heavy checks in orchestrator.
+- Use Docker & K8s for scalable deployment.
+- Regularly audit code for security.
 
 ---
-### Test Result: Same Block
-![2-22-2025-09-41](https://github.com/user-attachments/assets/2ded6e35-7575-491e-ac43-5f463b0b9cba)
 
-- Detect: https://solscan.io/tx/5o7ajnZ9CRf7FBYEvydu8vapJJDWtKCvRFiTUBmbeu2FmmDhAQQy3c9YFFhpTucr2SZcrf2aUsDanEVjYgwN9kBc
-- Bought: https://solscan.io/tx/3vgim3MwJsdtahXqfW2DrzTAWpVQ8EUTed2cjzHuqxSfUpfp72mgzZhiVosWaCUHdqJTDHpQaYh5xN7rkHGmzqWv
-- Dexscreener: https://dexscreener.com/solana/A1zZXCq2DmqwVD4fLDzmgQ3ceY6LQnMBVokejqnHpump
-
----
-## Donate
-
-👉👌 6vT7nrqtbXDWVc8cRUtifxgfDZi19aW7qhcZg2hSepwb
-
----
-## Support
-
-As the experimental result, the best environment for running this bot is to use `dedicated server located in NY`. 
-For support and further inquiries, please connect via Telegram: 📞 [soulcrancerdev](https://t.me/soulcrancerdev).
+## 🤝 Support
+Questions? Reach out on Telegram: 📞[soulcrancerdev](https://t.me/soulcrancerdev)  
+Always test thoroughly before mainnet sniping. 🚀 Happy trading!
