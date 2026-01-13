@@ -1,4 +1,4 @@
-# Polymarket Copy Trading Bot
+# Polymarket Copy Trading Bot & Polymarket Arbitrage Bot
 
 A Python bot for automated copy trading on Polymarket (on Polygon blockchain). This tool allows you to mirror trades from successful traders, implementing popular strategies discussed on X (formerly Twitter). Focus on high-edge traders, customizable parameters, and risk management to maximize profits.
 
