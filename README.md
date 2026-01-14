@@ -76,7 +76,6 @@ Based on trending discussions on X in 2025-2026, here are key strategies for suc
 - Crypto/HFT-optimized locations  
 - Exceptional uptime & network performance  
 
-My referral link (supports ongoing development):  
 **[Trading VPS →](https://app.tradingvps.io/aff.php?aff=60)**
 
 Most users see noticeably better fills and lower slippage after switching.
