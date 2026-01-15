@@ -59,6 +59,3 @@ src/
 └── main.rs
 ```
 
-## Support
-
-For support and further inquiries, please connect via Telegram: [jwest951227](https://t.me/jwest951227).
